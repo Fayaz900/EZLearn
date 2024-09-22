@@ -18,10 +18,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: "user"
     },
-    subscription:{
+    subscription:[{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Course"
-    },
+        ref: "Course",
+    }],
 })
 
 export const userModel=mongoose.model("User",userSchema)
