@@ -29,3 +29,16 @@ export const fetchLecturesController = ErrorHandle(async(req,res)=>{
     })
     res.json({lectures})
 })
+
+export const fetchLecture=ErrorHandle(async(req,res)=>{
+    const lecture = await LectureModel.findById(req.params.id)
+
+    const user = await userModel.findById(req.user._id);
+    if(user.role==="admin"){
+        return res.json({lecture});
+    }
+    if(!user.subscription.includes(req.params.id)) return res.status(400).json({
+        message:"You have not subscribed to this course"
+    })
+    res.json({lecture})
+})
