@@ -46,5 +46,19 @@ export const registerController = ErrorHandle(async(req,res)=>{
 })
 
 export const verifyUser = ErrorHandle(async(req,res)=>{
+    const {otp,activationToken} = req.body;
 
+    const verify=jwt.verify(activationToken,process.env.ACTIVATION_SECRET)
+    if(!verify) return res.status(400).json({message:"OTP Expired"})
+    if(verify.otp !==otp) return res.status(400).json({message:"Wrong OTP"})
+
+    await userModel.create({
+        name: verify.user.name,
+        email: verify.user.email,
+        password: verify.user.password,
+    })
+
+    res.json({
+        message:"User registered"
+    })
 })
