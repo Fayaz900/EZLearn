@@ -1,5 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
+import { UserData } from "../../../context/UserContext";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
+    const navigate= useNavigate();
+    const{btnLoading,loginUser}= UserData()
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+
+    const HandleSubmit=async()=>{
+        await loginUser(email,password,navigate)
+    }
+
   return (
     <div className="flex items-center justify-center h-screen w-full px-5 sm:px-0">
       <div className="flex bg-white rounded-lg shadow-lg border overflow-hidden max-w-sm lg:max-w-4xl w-full">
@@ -18,6 +29,8 @@ const Login = () => {
             <input
               className="text-gray-700 border border-gray-300 rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700"
               type="email"
+              value={email}
+              onChange={(e)=>setEmail(e.target.value)}
               required
             />
           </div>
@@ -30,6 +43,8 @@ const Login = () => {
             <input
               className="text-gray-700 border border-gray-300 rounded py-2 px-4 block w-full focus:outline-2 focus:outline-blue-700"
               type="password"
+              value={password}
+              onChange={(e)=>setPassword(e.target.value)}
             />
             <a
               href="#"
@@ -39,8 +54,11 @@ const Login = () => {
             </a>
           </div>
           <div className="mt-8">
-            <button className="bg-blue-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-blue-600">
-              Login
+            <button className="bg-blue-700 text-white font-bold py-2 px-4 w-full rounded hover:bg-blue-600"
+            type="submit"
+            disabled={btnLoading}
+            onClick={HandleSubmit}>
+              {btnLoading?"Please Wait..":"LogIn"}
             </button>
           </div>
           <a
