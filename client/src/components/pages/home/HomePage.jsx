@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import Reviews from '../../reviews/Reviews';
 
 const HomePage = () => {
   const fadeInFromLeft = {
@@ -59,6 +60,7 @@ const HomePage = () => {
           </motion.div>
         </div>
       </motion.section>
+      <Reviews/>
     </motion.div>
   );
 }

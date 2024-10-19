@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 const RegistartionForm = () => {
   return (
     <div className="h-[100vh] items-center flex justify-center px-5 lg:px-0">
@@ -60,9 +61,9 @@ const RegistartionForm = () => {
                 </button>
                 <p className="mt-6 text-xs text-gray-600 text-center">
                   Already have an account?{" "}
-                  <a href="">
+                  <Link to={'/login'}>
                     <span className="text-blue-900 font-semibold">Sign in</span>
-                  </a>
+                  </Link>
                 </p>
               </div>
             </div>

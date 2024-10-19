@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { UserData } from "../../../context/UserContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Login = () => {
     const navigate= useNavigate();
     const{btnLoading,loginUser}= UserData()
@@ -94,6 +94,7 @@ const Login = () => {
             </div>
           </a>
           <div className="mt-4 flex items-center w-full text-center">
+            <Link to={'/register'}>
             <a
               href="#"
               className="text-xs text-gray-500 capitalize text-center w-full"
@@ -101,6 +102,7 @@ const Login = () => {
               Don&apos;t have any account yet?
               <span className="text-blue-700"> Sign Up</span>
             </a>
+            </Link>
           </div>
         </div>
       </div>

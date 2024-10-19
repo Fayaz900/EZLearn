@@ -8,19 +8,15 @@ import { UserData } from './context/UserContext'
 import Profile from './components/profile/Profile'
 
 const App = () => {
-  const {isAuth,setIsAuth} = UserData()
+  const {isAuth, user} = UserData()
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulating an async auth check (like from localStorage, API, etc.)
     const checkAuthStatus = async () => {
-      // Example: Fetching auth status from localStorage or API
       const auth = await new Promise((resolve) => {
         setTimeout(() => resolve(localStorage.getItem('isAuth') === 'true'), 1000);
       });
-
-
-      setLoading(false); // Mark loading as complete
+      setLoading(false); 
     };
 
     checkAuthStatus();
@@ -36,7 +32,7 @@ const App = () => {
       <Header isAuth={isAuth}/>
       <Routes>
         <Route path='/' element={<HomePage/>}/>
-        <Route path='/account' element={isAuth? <Profile/> :<Login/>}/>
+        <Route path='/account' element={isAuth? <Profile user={user}/> :<Login/>}/>
         <Route path='/login' element={isAuth? <HomePage/> : <Login/>}/>
         <Route path='/register' element={isAuth? <HomePage/> :<RegistartionForm/>}/>
       </Routes>
