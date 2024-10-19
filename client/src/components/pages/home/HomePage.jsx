@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Reviews from '../../reviews/Reviews';
+import Footer from '../../footer/Footer';
 
 const HomePage = () => {
   const fadeInFromLeft = {
@@ -43,7 +44,7 @@ const HomePage = () => {
           <motion.div className="max-w-2xl mx-auto text-center">
             <h1 className="text-4xl font-bold sm:text-6xl">
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-white">
-                Best Online Education with EZLearn.
+                Best Online Education with LearnMore.
               </span>
             </h1>
             <p className="mt-5 text-base text-white sm:text-xl">
@@ -61,6 +62,7 @@ const HomePage = () => {
         </div>
       </motion.section>
       <Reviews/>
+      <Footer/>
     </motion.div>
   );
 }

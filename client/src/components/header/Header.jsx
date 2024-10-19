@@ -41,7 +41,7 @@ const Header = ({isAuth}) => {
       <div className="flex items-center justify-between h-16 lg:h-20 gap-10">
         <div className="flex-shrink-0 items-center">
           <a href="#" title="" className="flex text-white text-3xl ">
-            EZLearn
+            LearnMore
           </a>
         </div>
         <div className="hidden lg:flex lg:items-center mt-2 lg:justify-center lg:space-x-10">
