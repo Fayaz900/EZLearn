@@ -1,8 +1,20 @@
 import React, { useState } from 'react';
 import { IoMdLogOut } from "react-icons/io";
+import { UserData } from '../../context/UserContext';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 const Profile = ({ user }) => {
     const [selectedImage, setSelectedImage] = useState(null);
+
+    const {setIsAuth, setUser} = UserData()
+
+    const logoutHandler=()=>{
+        localStorage.clear()
+        setUser([])
+        setIsAuth(false)
+        toast.success("Logged Out")
+    }
 
     // Handle file upload
     const handleImageUpload = (event) => {
@@ -46,7 +58,7 @@ const Profile = ({ user }) => {
                             </div>
                             <p className="text-gray-700 font-semibold">{user.email}</p>
                             <p className="text-gray-500 text-sm">Joined on June 1, 2023</p>
-                            <button class="bg-white flex items-center justify-center gap-3 hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mt-5">
+                            <button onClick={logoutHandler} class="bg-white flex items-center justify-center gap-3 hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mt-5">
                             <IoMdLogOut />LogOut
                             </button>
                         </div>

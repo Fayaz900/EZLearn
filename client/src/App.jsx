@@ -6,6 +6,8 @@ import Login from './components/AuthComponents/Login/Login'
 import RegistartionForm from './components/AuthComponents/Register/Register'
 import { UserData } from './context/UserContext'
 import Profile from './components/profile/Profile'
+import { About } from './components/pages/about/About'
+import { Loading } from './components/utils/loading/Loading'
 
 const App = () => {
   const {isAuth, user} = UserData()
@@ -18,13 +20,12 @@ const App = () => {
       });
       setLoading(false); 
     };
-
     checkAuthStatus();
   }, []);
 
   if (loading) {
     // Display a loading spinner or a blank screen while waiting for auth check
-    return <div>Loading...</div>;
+    return <Loading/>;
   }
   return (
     <div>
@@ -32,6 +33,7 @@ const App = () => {
       <Header isAuth={isAuth}/>
       <Routes>
         <Route path='/' element={<HomePage/>}/>
+        <Route path='/about' element={<About/>}/>
         <Route path='/account' element={isAuth? <Profile user={user}/> :<Login/>}/>
         <Route path='/login' element={isAuth? <HomePage/> : <Login/>}/>
         <Route path='/register' element={isAuth? <HomePage/> :<RegistartionForm/>}/>

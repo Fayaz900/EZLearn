@@ -40,9 +40,9 @@ const Header = ({isAuth}) => {
     >
       <div className="flex items-center justify-between h-16 lg:h-20 gap-10">
         <div className="flex-shrink-0 items-center">
-          <a href="#" title="" className="flex text-white text-3xl ">
+          <Link to={'/'} className="flex text-white text-3xl ">
             LearnMore
-          </a>
+          </Link>
         </div>
         <div className="hidden lg:flex lg:items-center mt-2 lg:justify-center lg:space-x-10">
           <motion.a
@@ -59,6 +59,7 @@ const Header = ({isAuth}) => {
           >
             Courses
           </motion.a>
+          <Link to={'/about'}>
           <motion.a
             href="#"
             title=""
@@ -66,6 +67,7 @@ const Header = ({isAuth}) => {
           >
             About
           </motion.a>
+          </Link>
           <motion.a
             href="#"
             title=""
