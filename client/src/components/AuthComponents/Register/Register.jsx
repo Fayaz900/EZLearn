@@ -1,6 +1,16 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { UserData } from "../../../context/UserContext";
 const RegistartionForm = () => {
+  const navigate= useNavigate();
+    const{btnLoading,registerUser}= UserData()
+    const [name,setName]=useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+
+    const HandleSubmit=async()=>{
+        await registerUser(name,email,password,navigate)
+    }
   return (
     <div className="h-[100vh] items-center flex justify-center px-5 lg:px-0">
       <div className="max-w-screen-xl bg-white border shadow sm:rounded-lg flex justify-center flex-1">
@@ -28,23 +38,26 @@ const RegistartionForm = () => {
                   className="w-full px-5 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                   type="text"
                   placeholder="Enter your name"
+                  value={name}
+                  onChange={(e)=>setName(e.target.value)}
                 />
                 <input
                   className="w-full px-5 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                   type="email"
                   placeholder="Enter your email"
-                />
-                <input
-                  className="w-full px-5 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                  type="tel"
-                  placeholder="Enter your phone"
+                  value={email}
+                  onChange={(e)=>setEmail(e.target.value)}
+                  required
                 />
                 <input
                   className="w-full px-5 py-3 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                   type="password"
                   placeholder="Password"
+                  value={password}
+                  onChange={(e)=>setPassword(e.target.value)}
                 />
-                <button className="mt-5 tracking-wide font-semibold bg-blue-900 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                <button className="mt-5 tracking-wide font-semibold bg-blue-900 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
+                type="submit" onClick={HandleSubmit} disabled={btnLoading}>
                   <svg
                     className="w-6 h-6 -ml-2"
                     fill="none"
@@ -57,7 +70,7 @@ const RegistartionForm = () => {
                     <circle cx="8.5" cy="7" r="4" />
                     <path d="M20 8v6M23 11h-6" />
                   </svg>
-                  <span className="ml-3">Sign Up</span>
+                  <span className="ml-3">{btnLoading?"Please Wait...":"Sign Up"}</span>
                 </button>
                 <p className="mt-6 text-xs text-gray-600 text-center">
                   Already have an account?{" "}
