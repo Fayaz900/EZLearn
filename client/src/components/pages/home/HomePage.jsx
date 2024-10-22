@@ -35,7 +35,7 @@ const HomePage = () => {
     
 
       <motion.section
-        className="relative pt-24 pb-10 sm:pt-32 sm:pb-16 lg:pb-24"
+        className="relative pt-24 pb-10 sm:pt-32 sm:pb-16 lg:pb-24 lg:min-h-[70vh] sm:min-h-max flex justify-center items-center"
         variants={fadeInFromBottom}  // Using fadeInFromBottom for the main content section
         initial="hidden"
         animate="visible"
@@ -61,6 +61,42 @@ const HomePage = () => {
           </motion.div>
         </div>
       </motion.section>
+
+      <motion.div 
+      className="flex flex-col lg:flex-row items-center lg:justify-between min-h-[40vh] p-4 lg:p-16 bg-gray-100"
+      initial="hidden"
+      animate="visible"
+    >
+      {/* Text Section */}
+      <motion.div
+        className="lg:w-1/2 w-full flex flex-col items-start justify-center space-y-6"
+        variants={fadeInFromLeft} // Apply the animation for text section
+      >
+        <h1 className="text-4xl lg:text-5xl font-bold text-black">
+          Grow More with LearnMore
+        </h1>
+        <p className="text-lg lg:text-xl text-gray-600">
+          Learning is Easy! <br />
+          Welcome to LearnMore! Here we have courses on topics ranging from Physics, Chemistry and Biology to Neuroscience, Mathematics, and Economics. Go ahead, pick your topic and begin learning!
+        </p>
+        <button className="mt-4 px-6 py-3 bg-black text-white text-lg font-semibold rounded-lg hover:bg-gray-800 transition">
+          CHOOSE YOUR COURSE
+        </button>
+      </motion.div>
+
+      {/* Image Section */}
+      <motion.div
+        className="lg:w-1/2 w-full mt-8 lg:mt-0"
+        variants={fadeInFromRight} // Apply the animation for image section
+      >
+        <img
+          src="https://png.pngtree.com/thumb_back/fh260/background/20230713/pngtree-e-learning-goes-mobile-3d-illustration-of-book-and-smartphone-image_3864680.jpg" // Replace this with your image URL
+          alt="image"
+          className="w-full h-auto object-cover rounded-lg shadow-lg"
+        />
+      </motion.div>
+    </motion.div>
+
       <Reviews/>
       <Footer/>
     </motion.div>

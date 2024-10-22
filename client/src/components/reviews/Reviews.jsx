@@ -51,7 +51,7 @@ function Reviews() {
         {testimonialsData.map((e, index) => (
           <motion.div
             key={e.id}
-            className="bg-white shadow-lg rounded-lg p-6 text-center"
+            className="bg-white shadow-lg rounded-lg p-6 text-center  cursor-pointer"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.2 }}
