@@ -17,6 +17,18 @@ const schema = new mongoose.Schema({
         type:Number,
         required:true,
     },
+    originalPrice:{
+        type:Number,
+        required:true,
+    },
+    rating:{
+        default:0,
+        type:Number,
+    },
+    bestseller:{
+        default:false,
+        type:Boolean,
+    },
     duration:{
         type:Number,
         required:true,

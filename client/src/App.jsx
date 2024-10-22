@@ -9,6 +9,7 @@ import Profile from './components/profile/Profile'
 import { About } from './components/pages/about/About'
 import { Loading } from './components/utils/loading/Loading'
 import Verify from './components/AuthComponents/verify/Verify'
+import Courses from './components/pages/courses/Courses'
 
 const App = () => {
   const {isAuth, user} = UserData()
@@ -35,6 +36,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<HomePage/>}/>
         <Route path='/about' element={<About/>}/>
+        <Route path='/courses' element={<Courses/>}/>
         <Route path='/account' element={isAuth? <Profile user={user}/> :<Login/>}/>
         <Route path='/login' element={isAuth? <HomePage/> : <Login/>}/>
         <Route path='/register' element={isAuth? <HomePage/> :<RegistartionForm/>}/>

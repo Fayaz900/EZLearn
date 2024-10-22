@@ -7,7 +7,10 @@ import fs from 'fs'
 import { userModel } from "../models/userModel.js";
 
 export const createCourseController = ErrorHandle(async(req,res)=>{
-    const {title, description, category, createdBy, duration, price} =req.body;
+    const {title, description, category, createdBy, duration, price ,originalPrice, rating, bestseller} =req.body;
+
+    console.log(req.body);
+    
 
     const image = req.file;
     await coursesModel.create({
@@ -17,7 +20,10 @@ export const createCourseController = ErrorHandle(async(req,res)=>{
         createdBy,
         image: image?.path,
         duration,
-        price
+        price,
+        originalPrice,
+        rating,
+        bestseller
     });
     res.status(201).json({
         message:"Course created succesfully"
