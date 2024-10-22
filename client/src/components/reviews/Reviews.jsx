@@ -1,5 +1,11 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules"; // Only Autoplay is imported now
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation"; // No longer needed, but keeping if you use elsewhere
+import "swiper/css/pagination"; // No longer needed, but keeping if you use elsewhere
 
 function Reviews() {
   const testimonialsData = [
@@ -43,32 +49,40 @@ function Reviews() {
 
   return (
     <section className="py-12 bg-gray-100">
-    <div className="container mx-auto text-center">
-      <h2 className="text-3xl font-bold text-purple-700 mb-8">
-        What Our Students Say
-      </h2>
-      <div className="grid md:grid-cols-4 gap-8">
-        {testimonialsData.map((e, index) => (
-          <motion.div
-            key={e.id}
-            className="bg-white shadow-lg rounded-lg p-6 text-center  cursor-pointer"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.2 }}
-          >
-            <img
-              className="w-16 h-16 mx-auto rounded-full mb-4"
-              src={e.image}
-              alt={e.name}
-            />
-            <p className="text-gray-600 mb-4">{e.message}</p>
-            <h3 className="font-bold text-lg text-purple-700">{e.name}</h3>
-            <span className="text-gray-400 text-sm">{e.position}</span>
-          </motion.div>
-        ))}
+      <div className="container mx-auto text-center">
+        <h2 className="text-3xl font-bold text-purple-700 mb-8">
+          What Our Students Say
+        </h2>
+
+        <Swiper
+          modules={[Autoplay]} // Only Autoplay is used
+          spaceBetween={30}
+          slidesPerView={1}
+          autoplay={{ delay: 4000 }} // Autoplay every 4 seconds
+          breakpoints={{
+            640: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
+          className="flex justify-center"
+        >
+          {testimonialsData.map((e) => (
+            <SwiperSlide key={e.id} className="p-4">
+              <div className="bg-white shadow-lg rounded-lg p-6 text-center cursor-pointer">
+                <img
+                  className="w-16 h-16 mx-auto rounded-full mb-4"
+                  src={e.image}
+                  alt={e.name}
+                />
+                <p className="text-gray-600 mb-4">{e.message}</p>
+                <h3 className="font-bold text-lg text-purple-700">{e.name}</h3>
+                <span className="text-gray-400 text-sm">{e.position}</span>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
-    </div>
-  </section>
+    </section>
   );
 }
 
