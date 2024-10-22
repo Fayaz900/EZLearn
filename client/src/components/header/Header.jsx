@@ -45,6 +45,7 @@ const Header = ({isAuth}) => {
           </Link>
         </div>
         <div className="hidden lg:flex lg:items-center mt-2 lg:justify-center lg:space-x-10">
+          <Link to={'/'}>
           <motion.a
             href="#"
             title=""
@@ -52,6 +53,8 @@ const Header = ({isAuth}) => {
           >
             Home
           </motion.a>
+          </Link>
+          <Link to={'/courses'}>
           <motion.a
             href="#"
             title=""
@@ -59,6 +62,7 @@ const Header = ({isAuth}) => {
           >
             Courses
           </motion.a>
+          </Link>
           <Link to={'/about'}>
           <motion.a
             href="#"
